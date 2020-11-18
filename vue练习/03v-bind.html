@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02</title>
+    <style type="text/css">
+        .po{
+            color:red;
+        }
+        .active{
+            color:#ccc;
+        }
+    </style>
+</head>
+<body>
+	<div id="app"></div>
+
+	<!-- 1-引包 -->
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+    	// 2-创建实例化对象
+    	// 插值模板语法{{  }}
+	    new Vue({        	
+	    	el:"#app",  //目的地
+        	template:`
+                <!-- 一定要有根标签  闭合的标签 -->
+                <div>
+                    <p class="po" v-bind:class="{active:isRed}">bing绑定</p>
+                    <button v-on:click='changeColor'>切换字体颜色</button>
+                </div>
+            `,
+        	data:function(){
+        		//声明的数据 
+        		return{
+        			// msg:'active',
+                    isRed:false
+        		}
+        	},
+            methods:{
+                changeColor(){
+                    this.isRed=!this.isRed
+                }
+            }
+        })
+    </script>
+	
+</body>
+</html>

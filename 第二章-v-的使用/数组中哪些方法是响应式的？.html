@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数组中哪些方法是响应式的？</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in letters">{{item}}</li>
+        </ul>
+        <button @click="add">添加</button>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+        const app = new Vue({
+            el: "#app", //目的地
+            data() {
+                return {
+                   letters:["a","b","c","d"]
+                }
+            },
+            methods:{
+                add(){
+                    // 1  push:在数组的末尾添加元素
+                    // this.letters.push("bb")
+                    // 
+                    
+                    // 2 pop：删除数组的最后一个元素
+                    // 3 shift：删除数组的第一个元素
+                    // 4 unshift：删除数组的最后一个元素
+                    // 5 splice：--》删除元素：.splice(2,6)==>表示：从索引值为2的开始，删除后面的6个元素，如果没有6，则删除索引值为2的之后的所有元素
+                    //           --》替换元素：.splice(1，2，"aa","bb")==>表示：从索引值为1的开始，要替换掉后面的2个元素，替换的内容为"aa","bb"
+                    //           --》插入元素：.splice(1,0,"aa","bb"……)==>表示：从索引值为1的开始，传入0，要插入"aa","bb"……
+                    //sort :排序
+                    //reverse :反向排序
+                    
+
+                    // 注：通过元素的索引值修改数组的元素不是响应式的！！！！
+                    // this.letters.splice(1,2,"vvvvvvvvv","xxxxxxxxxxx")
+                    // 也可以通过vue.set(),修改--》vue.set(要修改的对象，索引值【要修改的索引值】，修改后的值)
+                    Vue.set(this.letters,0,"hhhhhhhh")
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

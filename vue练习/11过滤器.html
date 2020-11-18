@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+	<div id="app"></div>
+
+	<!-- 1-引包 -->
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+        //过滤器--》作用：对你当前的数据添油加醋
+        /* 在组件内部用filters:{
+            过滤器的名字:function(){
+
+                //内部一定要return
+            }
+
+            调用过滤器 ： 数据属性|过滤器的名字
+
+
+        } */
+
+        Vue.filter('myReverse',function(value,arg1){
+            return arg1 +' '+ value.split('').reverse().join('');
+        })
+
+
+    	// 声明局部组件 
+        var App = {
+            data(){
+                return{
+                    price:0,
+                    msg:'hello filter'
+                }
+            },
+            template:`
+                <div>
+                    <input type="number" name="price" v-model="price" />
+                    <h3>{{price | myCurrentcy}}</h3>
+                    <h3>{{ msg | myReverse('asdfgth')}}</h3>
+                </div>
+            `,
+            filters:{
+                myCurrentcy:function(value){
+                    return "$"+value;
+                }
+            },
+        }
+
+        // 2-创建实例化对象
+	    new Vue({        	
+	    	el:"#app",  //目的地
+        	template:'<App />',   //使用组件
+            // 3-挂载组件
+            components:{
+                App
+            }
+        })
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-model结合checkbox</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 1--单选框 -->
+        <label for="agree">
+            <input type="checkbox" id="agree" v-model="isAgree" />同意协议
+        </label>
+        <h2>您选择的是：{{isAgree}}</h2>
+        <button :disabled="!isAgree">下一步</button>
+
+
+        <!-- 2--多选框 -->
+        <label>
+            <input type="checkbox" value="篮球0000" v-model="hobbies" />篮球0000
+            <input type="checkbox" value="篮球1111" v-model="hobbies"  />篮球1111
+            <input type="checkbox" value="篮球2222" v-model="hobbies"  />篮球2222
+            <input type="checkbox" value="篮球3333" v-model="hobbies"  />篮球3333
+            <input type="checkbox" value="篮球4444" v-model="hobbies"  />篮球4444
+            <input type="checkbox" value="篮球5555" v-model="hobbies"  />篮球5555
+        </label>
+        <h2>您选择的是：{{hobbies}}</h2>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+        const app = new Vue({
+            el: "#app", //目的地
+            data() {
+                return {
+                    isAgree:false,  //单选框
+                    hobbies:[],  //多选框
+                }
+            },
+            methods:{
+                
+            },
+        })
+    </script>
+
+</body>
+
+</html>

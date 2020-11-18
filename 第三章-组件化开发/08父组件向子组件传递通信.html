@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>08父组件向子组件传递通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 3.使用组件 -->
+    <div id="app">
+        <cpn :cmovies="movies" :cmessage="message"></cpn>
+    </div>
+
+    <template id="cpn">
+		<div>
+			<!-- <p>{{cmovies}}</p> -->
+			<ul>
+				<li v-for="item in cmovies">{{item}}</li>
+			</ul>
+			<h1>{{cmessage}}</h1>
+		</div>
+	</template>
+
+    <script type="text/javascript">
+        //父传子：props
+        const cpn = {
+            template: '#cpn',
+            // props:['cmovies','cmessage'],
+            props: {
+                //1. 类型限制
+                // cmovies:Array,
+                // cmessage:String,
+
+                //2. 提供一些默认值  以及必传值
+                cmessage: {
+                    type: String,
+                    default: 'aaaaaa',
+                    required: true, //必填的值
+                },
+                //类型是对象或者数组时，默认值必须是一个函数
+                cmovies: {
+                    type: Array,
+                    default () {
+                        return []
+                    }
+                }
+            },
+            // props:{
+            // 	cmovies:{
+            // 		type:Array,
+            // 		default:"aaaaa"
+            // 	}
+            // },
+            data() {
+                return {}
+            },
+            methods: {
+
+            }
+        }
+
+        //注册局部组件的语法糖
+        const app = new Vue({
+            el: `#app`,
+            data: {
+
+                message: "你好啊",
+                movies: ['海王', '海贼王', '海尔兄弟']
+
+
+            },
+            components: {
+                cpn
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录的小案例</title>
+</head>
+
+<body>
+    <div id="app">
+        <span v-if="isUser">
+            <label for="userName">用户账号</label> 
+            <input type="text" id="username" placeholder="用户账号" />
+        </span>
+        <span v-else>
+            <label for="email">用户邮箱</label> 
+            <input type="text" id="email" placeholder="用户邮箱" />
+        </span>
+        <button @click="isUser = !isUser">切换类型</button>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+        const app = new Vue({
+            el: "#app", //目的地
+            data() {
+                return {
+                    isUser:true
+                }
+            },
+            computed:{
+                result (){
+                    let showMsg = '';
+                    if(this.score >= 90){
+                        showMsg="优秀"
+                    }else if(this.score >= 80){
+                        showMsg="良好"
+                    }else if(this.score >= 60){
+                        showMsg="及格"
+                    }else{
+                        showMsg="不及格"
+                    }
+                    return showMsg
+                }
+            },
+            methods:{
+                doThis(){
+                    console.log("doThis")
+                },
+                divclick(){
+                    console.log("点击divclick")
+                },
+                btnclick(){
+                    console.log("点击btnclick")
+                },
+                submitClick(){
+                    console.log("submitClick")
+                },
+                keyup(){
+                    console.log("keyup")
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

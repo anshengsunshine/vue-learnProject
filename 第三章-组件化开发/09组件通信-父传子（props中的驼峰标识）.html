@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09组件通信-父传子（props中的驼峰标识）</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<!-- 3.使用组件 -->
+	<div id="app">
+		<cpn :c-info="info" :child-my-message="message"></cpn>
+	</div>
+
+	<template id
+	="cpn">
+		<div>
+		   <h1>{{cInfo}}</h1>
+		   <h1>{{childMyMessage}}</h1>
+		</div>
+	</template>
+
+	<script type="text/javascript">
+		//父传子：props
+		const cpn ={
+			template:'#cpn',
+			// props:['cmovies','cmessage'],
+			props:{
+				cInfo:{
+					type:Object,
+					default(){
+						return {}
+					}
+				},
+				childMyMessage:{
+					type:String,
+					default:''
+				}
+			},
+			data(){
+				return {}
+			},
+			methods:{
+
+			}
+		}
+
+		//注册局部组件的语法糖
+		const app = new Vue({
+			el:`#app`,
+			data:{
+				info:{
+					name:"why",
+					age:18,
+					height:1.88
+				},
+				message:"aaaaaaa"
+			},
+			components:{
+				cpn
+			}
+		})
+
+	</script>
+</body>
+</html>

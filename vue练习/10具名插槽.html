@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+        }
+        .header{
+            width:100%;
+            height: 80px;
+            background-color: #aaa;
+        }
+        .main{
+            width:100%;
+        }
+        .main2{
+            width: 100%;
+            height:1000px;
+        }
+        .main2 .aside{
+            float: left;
+            width:30%;
+            height:100%;
+            background-color: #abcdef;
+        }
+        .main2 .content{
+            float: left;
+            width:70%;
+            height: 100%;
+            background-color: #ccc;
+        }
+        .default{
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background-color: #fff;
+            border:1px solid #dcdfe6;
+            border-color:#dcdfe6;
+            color:#606266;
+            -webkit-appearance:none;
+            text-align: center;
+            box-sizing: border;
+            outline:none;
+            margin:0;
+            transition:0.1s;
+            font-weight: 500;
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            padding:12px 20px;
+            font-size:14px;
+            border-radius: 4px
+        }
+        .success{
+            color:#fff;
+            background-color: #67c23a;
+            border-color:#67c23a;
+        }
+    </style>
+</head>
+<body>
+	<div id="app"></div>
+
+	<!-- 1-引包 -->
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+        //全局组件
+        //第一个参数是组件的名字，第二个参数是option
+        //slot元素作为承载分发内容的出口
+        Vue.component('mySlot',{
+            template:`
+               <li>
+                    预留的第一个插槽值
+                    <slot name='two'></slot>
+                    预留的第二个插槽值
+                    <slot name='one'></slot>
+               </li>
+            `,
+        });
+
+        //父子组件传值
+        //1-父组件中，先绑定 （v-bind）:自定义的属性名 = posts
+        //2-子要声明props:['自定义的属性名']来接收
+        //3-收到了就是自己的，可以任意使用
+    	
+    	// 声明局部组件 
+        var App = {
+            template:`
+                <div>
+                    <ul>
+                        <mySlot>
+                            <h1 slot='two'>我是h1，第一个插槽值</h1>
+                            <h6 slot='one'>我是h6，第二个插槽值</h6>
+                        </mySlot>
+                    </ul>
+                </div>`,
+        };
+        // 2-创建实例化对象
+	    new Vue({        	
+	    	el:"#app",  //目的地
+        	template:'<App />',   //使用组件
+            // 3-挂载组件
+            components:{
+                App
+            }
+        })
+    </script>
+	
+</body>
+</html>

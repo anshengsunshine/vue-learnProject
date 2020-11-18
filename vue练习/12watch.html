@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+	<div id="app">
+        <input type="text" name="" v-model='msg'>
+        <h3>{{msg}}</h3>
+        <button @click='stus[0].name="rose"'>改变</button>
+        <h4>{{stus[0].name}}</h4>
+    </div>
+
+	<!-- 1-引包 -->
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+        //watch监听单个属性  
+        //基本数据类型  简单监视
+        //复杂数据类型  深度监视
+
+        // 2-创建实例化对象
+	    new Vue({        	
+	    	el:"#app",  //目的地
+        	data:function(){
+                return {
+                    msg:'',
+                    stus:[{name:'jack'}]
+                }
+            },
+            watch:{
+                msg:function(newV,oldV){
+                    // console.log(newV,oldV)
+                    if(newV==='li'){
+                        console.log("li出来了")
+                    }
+                }
+            },
+            stus:{
+                deep:true,  //深度监视
+                handler:function(newV,oldV){
+                    console.log(newV[0].name)
+                }
+            }
+
+            
+        })
+    </script>
+	
+</body>
+</html>

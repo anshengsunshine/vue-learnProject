@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-on的修饰符</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1  .stop修饰符的使用：停止冒泡 -->
+        <div @click="divclick">
+            aaaaaaaaaaaaa
+            <button @click.stop="btnclick">按钮</button>
+        </div>
+        
+        <!-- 2  .prevent修饰符的使用：阻止默认行为 -->
+        <button @click.prevent="doThis"></button>
+        <br>
+
+        <!-- 阻止默认行为，没有表达式 -->
+        <form @submit.prevent></form>
+        <form action="baidu">
+            <input type="submit" value="提交" @click.prevent="submitClick">
+        </form>
+
+        <!-- 3   监听某个键盘的键帽 -->
+        <input type="text" @keyup="keyup">
+
+        <!-- 串联修饰符 -->
+        <button @click.stop.prevent="doThis"></button>
+
+        <!-- 键修饰符，键别名 -->
+        <input @keyup.enter="onEnter">
+
+        <!-- 键修饰符，键代码 -->
+        <input @keyup.13="onEnter">
+
+        <!-- 点击回调会触发一次 -->
+        <button @click.once="doThis"></button>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+        new Vue({
+            el: "#app", //目的地
+            data() {
+                return {
+                    counter:0,
+                }
+            },
+            methods:{
+                doThis(){
+                    console.log("doThis")
+                },
+                divclick(){
+                    console.log("点击divclick")
+                },
+                btnclick(){
+                    console.log("点击btnclick")
+                },
+                submitClick(){
+                    console.log("submitClick")
+                },
+                keyup(){
+                    console.log("keyup")
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>20-计算属性的基本使用</title>
+    <style type="text/css">
+        .red {
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <h1 class="red">{{firstName + ' ' + lastName }}</h1>
+        <h1 class="red">{{firstName }} {{lastName}}</h1>
+        <h1>{{getFullName()}}</h1> -->
+        <h1>{{fullname}}</h1>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+
+
+        // 2-创建实例化对象
+        // 插值模板语法{{  }}
+        new Vue({
+            el: "#app", //目的地
+            data: function() {
+                //声明的数据 
+                return {
+                    firstName:"aaaaa",
+                    lastName:"bbbbbbb"
+                }
+            },                                                                                                                                                                                     
+            computed:{
+                fullname:{
+                    // return this.firstName + ' ' + this.lastName;
+                    get(){
+                        console.log("----------调用了fullName的，get方法")
+                        return this.firstName + ' ' + this.lastName;
+                    },
+                    set(newValue){
+                        console.log("---------调用了fullName的set方法")
+                        const names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[1]
+                    },
+
+                }
+            },
+            methods: {
+                // getFullName(){
+                //     return this.firstName + ' ' + this.lastName;
+                // }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03小案例-计数器</title>
+</head>
+<body>
+	<div id="app">
+	    <h2>当前计数：{{ count }}</h2>
+	    <button @click="add">+</button>
+	    <button @click="sub">-</button>
+    </div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el:"#app",  //用于挂载要管理的元素
+			data:{  //定义数据
+				count:0
+			},
+			methods:{
+				add(){
+					this.count++
+				},
+				sub(){
+					this.count--
+				}
+			}
+		})
+	</script>
+</body>
+</html>

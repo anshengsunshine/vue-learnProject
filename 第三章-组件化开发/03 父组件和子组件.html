@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03 父组件和子组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<!-- 3.使用组件 -->
+	<div id="app">
+		<cpn2></cpn2>
+	</div>
+
+	<script type="text/javascript">
+		//1.创建第一个组件构造器对象
+		const cpnC1  = Vue.extend({
+			template:`
+			    <div>
+			        <h2>我是标题</h2>
+			        <p>111111111111</p>
+			        <p>22222222222</p>
+			    </div>`
+		})
+
+		//2.创建第二个组件构造器对象
+		const cpnC2  = Vue.extend({
+			template:`
+			    <div>
+			        <h2>我是标题</h2>
+			        <p>33333333333333</p>
+			        <p>4444444444444</p>
+			        <cpn1></cpn1>
+			    </div>`,
+			components:{
+				//cpn使用组件时的标签名
+				cpn1:cpnC1
+			}
+		})
+
+		//2.注册对象--》全局组件-->意味着可以在多个vue的实例下使用
+		//Vue.component('my-cpn',cpnC)
+		
+		const app = new Vue({
+			el:`#app`,
+			components:{
+				//cpn使用组件时的标签名
+				cpn2:cpnC2
+			}
+		})
+
+	</script>
+</body>
+</html>

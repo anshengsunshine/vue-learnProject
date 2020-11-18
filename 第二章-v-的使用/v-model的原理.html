@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-model的原理</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="message" /> -->
+
+        <input type="text" :value="message" @input="onChange" />
+
+        <input type="text" :value="message" @input="message = $event.target.value" />
+
+
+        <h2>{{message}}</h2>
+    </div>
+    <!-- 1-引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        // MVVM   Model View ViewModel
+        const app = new Vue({
+            el: "#app", //目的地
+            data() {
+                return {
+                    message:"你好"
+                }
+            },
+            methods:{
+                onChange(event){ 
+                    console.log(event)
+                    this.message = event.target.value
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

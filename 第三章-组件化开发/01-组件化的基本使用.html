@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-组件化的基本使用</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<!-- 3.使用组件 -->
+	<div id="app">
+		<my-cpn></my-cpn>
+		<my-cpn></my-cpn>
+		<my-cpn></my-cpn>
+		<my-cpn></my-cpn>
+	</div>
+
+	<div id="app2">
+		<my-cpn></my-cpn>
+	</div>
+
+	<script type="text/javascript">
+		//1.创建组件构造器对象
+		const cpnC  = Vue.extend({
+			template:`
+			    <div>
+			        <h2>我是标题</h2>
+			        <p>111111111111</p>
+			        <p>12222222222</p>
+			    </div>`
+		})
+		//2.注册对象--》全局组件-->意味着可以在多个vue的实例下使用
+		Vue.component('my-cpn',cpnC)
+		//
+		
+		const app = new Vue({
+			el:`#app`,
+		})
+
+		const app2 = new Vue({
+			el:`#app2`,
+		})
+
+	</script>
+</body>
+</html>
